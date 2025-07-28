@@ -49,7 +49,7 @@ defineProps({
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: #1abc9c;
+  background: #302b63;
   color: white;
   padding: 1rem;
 }
@@ -76,7 +76,7 @@ defineProps({
   margin-top: 1rem;
 }
 .modal-details a {
-  color: #1abc9c;
+  color: #302b63;
   text-decoration: none;
 }
 @keyframes fadeIn {

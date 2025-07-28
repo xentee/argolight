@@ -58,63 +58,62 @@ async function onSubmit() {
 </script>
 
 <style scoped>
-/* Page centré plein écran */
 .login-page {
+  position: relative;
+  min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 100vh;
-  background: linear-gradient(135deg, #1f2c88, #1abc9c);
+  background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
 }
 
-/* Card blanche avec ombre */
 .login-card {
-  background: white;
+  background: rgba(255, 255, 255, 0.95);
   border-radius: 12px;
   padding: 2.5rem 3rem;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
   width: 100%;
   max-width: 400px;
   text-align: center;
 }
 
-/* Titre */
 .login-card h1 {
   margin-bottom: 1.5rem;
-  color: #333;
+  color: #302b63;
   font-size: 1.75rem;
 }
 
-/* Groupe label+input */
 .form-group {
-  margin-bottom: 1rem;
+  margin-bottom: 1.25rem;
   text-align: left;
 }
 .form-group label {
   display: block;
   margin-bottom: 0.5rem;
-  font-weight: 500;
-  color: #555;
+  font-weight: 600;
+  color: #302b63;
 }
 .form-group input {
   width: 100%;
   padding: 0.75rem 1rem;
-  border: 1px solid #ddd;
+  border: 1px solid #ccc;
   border-radius: 6px;
   font-size: 1rem;
-  transition: border-color 0.2s;
+  background: #f5f7fa;
+  color: #333;
+  transition: border-color 0.2s, background 0.2s;
 }
 .form-group input:focus {
   outline: none;
-  border-color: #1abc9c;
+  border-color: #302b63;
+  background: #fff;
 }
 
-/* Bouton primary */
 .btn {
   display: inline-block;
   width: 100%;
   padding: 0.75rem;
-  background: #1abc9c;
+  background: #302b63;
   color: white;
   font-size: 1rem;
   font-weight: 600;
@@ -124,16 +123,17 @@ async function onSubmit() {
   transition: background 0.2s, transform 0.1s;
 }
 .btn:hover {
-  background: #169d83;
+  background: #2a274b;
 }
 .btn:active {
   transform: scale(0.98);
 }
 
-/* Message d’erreur */
 .error {
   margin-top: 1rem;
   color: #e74c3c;
-  font-weight: 500;
+  font-weight: 600;
 }
 </style>
+
+

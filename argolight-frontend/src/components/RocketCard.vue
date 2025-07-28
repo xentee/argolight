@@ -67,7 +67,7 @@ const formattedDate = computed(() =>
 .name {
   margin: 0 0 0.5rem;
   font-size: 1.25rem;
-  color: #1abc9c;
+  color: #302b63;
   flex-shrink: 0;
 }
 .meta {
@@ -90,8 +90,12 @@ const formattedDate = computed(() =>
   padding: 0.5rem 0;
   border-radius: 6px;
   font-weight: 600;
-  background: #1abc9c;
-  color: white;
   flex-shrink: 0;
+  background: #bdc3c7;
+  color: #555;
+}
+.status.active {
+  background: #302b63;
+  color: white;
 }
 </style>
