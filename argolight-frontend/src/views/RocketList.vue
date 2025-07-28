@@ -131,9 +131,9 @@ onMounted(async () => {
   position: absolute;
   top: 4rem;
   right: 2rem;
-  background: rgba(255,255,255,0.95);
+  background: rgba(255, 255, 255, 0.95);
   border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
   display: flex;
   flex-direction: column;
   padding: 0.5rem;
@@ -141,7 +141,7 @@ onMounted(async () => {
 }
 
 .user-info {
-  background: rgba(255,255,255,0.1);
+  background: rgba(255, 255, 255, 0.1);
   padding: 0.3rem 0.8rem;
   border-radius: 6px;
   font-weight: 500;
@@ -159,8 +159,14 @@ onMounted(async () => {
   font-size: 0.9rem;
   transition: background 0.2s, transform 0.1s;
 }
-.logout-btn:hover { background: #c0392b; }
-.logout-btn:active { transform: scale(0.98); }
+
+.logout-btn:hover {
+  background: #c0392b;
+}
+
+.logout-btn:active {
+  transform: scale(0.98);
+}
 
 .loader-wrapper,
 .error-message {
@@ -183,29 +189,31 @@ onMounted(async () => {
   z-index: 1;
 }
 
-.grid > div {
+.grid>div {
   cursor: pointer;
 }
 
 .card {
-  background: rgba(255,255,255,0.9);
+  background: rgba(255, 255, 255, 0.9);
   border-radius: 12px;
   overflow: hidden;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.2);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
   display: flex;
   flex-direction: column;
   transition: transform 0.2s, box-shadow 0.2s;
   height: 360px;
 }
+
 .card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 12px 24px rgba(0,0,0,0.3);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
 }
 
 .image-wrapper {
   aspect-ratio: 16/9;
   overflow: hidden;
 }
+
 .image-wrapper img {
   width: 100%;
   height: 100%;
@@ -217,11 +225,13 @@ onMounted(async () => {
   flex: 1;
   color: #333;
 }
+
 .name {
   margin: 0 0 0.5rem;
   font-size: 1.25rem;
   color: #1abc9c;
 }
+
 .meta {
   font-size: 0.875rem;
   color: #666;
@@ -229,6 +239,7 @@ onMounted(async () => {
   display: flex;
   justify-content: space-between;
 }
+
 .description {
   flex: 1;
   font-size: 0.95rem;
@@ -236,6 +247,7 @@ onMounted(async () => {
   margin-bottom: 1rem;
   overflow: hidden;
 }
+
 .status {
   text-align: center;
   padding: 0.5rem 0;
@@ -244,21 +256,39 @@ onMounted(async () => {
   background: #1abc9c;
   color: #fff;
 }
+
 .status.inactive {
   background: #bdc3c7;
   color: #555;
 }
 
 @media (max-width: 768px) {
-  .header { padding: 0 1rem; margin-bottom: 2rem; }
-  .header h1 { font-size: 2rem; }
-  .header-right { right: 1rem; }
-  .burger { right: 1rem; }
+  .header {
+    padding: 0 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .header h1 {
+    font-size: 2rem;
+  }
+
+  .header-right {
+    right: 1rem;
+  }
+
+  .burger {
+    right: 1rem;
+  }
+
   .grid {
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap: 1rem;
   }
-  .card { height: auto; }
+
+  .card {
+    height: auto;
+  }
+
   .description {
     display: -webkit-box;
     -webkit-line-clamp: 4;
@@ -268,18 +298,40 @@ onMounted(async () => {
 }
 
 @media (max-width: 480px) {
-  .header-right { display: none; }
-  .burger { display: block; }
-  .header h1 { font-size: 1.5rem; }
-  .user-info, .logout-btn { padding: 0.3rem 0.6rem; font-size: 0.8rem; }
+  .header-right {
+    display: none;
+  }
+
+  .burger {
+    display: block;
+  }
+
+  .header h1 {
+    font-size: 1.5rem;
+  }
+
+  .user-info,
+  .logout-btn {
+    padding: 0.3rem 0.6rem;
+    font-size: 0.8rem;
+  }
+
   .mobile-menu {
     top: 3.5rem;
     right: 1rem;
   }
+
+  .mobile-menu .user-info {
+    color: #333;
+  }
+
   .grid {
     grid-template-columns: 1fr;
     gap: 1rem;
   }
-  .card { height: auto; }
+
+  .card {
+    height: auto;
+  }
 }
 </style>
