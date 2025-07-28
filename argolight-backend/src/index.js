@@ -1,13 +1,14 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const { PORT, MONGO_URI, JWT_SECRET } = require('./config');
+const auth = require('./middlewares/auth');
 const rocketRoutes = require('./routes/rocket');
 const userRoutes = require('./routes/user');
 
 const app = express();
 
 app.use(express.json());
-app.use('/rocket', rocketRoutes);
+app.use('/rocket', auth, rocketRoutes);
 app.use('/user', userRoutes);
 
 mongoose
