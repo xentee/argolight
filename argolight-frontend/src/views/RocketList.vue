@@ -2,6 +2,10 @@
   <div class="rockets-page">
     <header class="header">
       <h1>Nos Fusées</h1>
+      <div class="header-right">
+        <span class="user-info">{{ userEmail }}</span>
+        <button class="logout-btn" @click="logout">Déconnexion</button>
+      </div>
     </header>
 
     <div v-if="loading" class="loader-wrapper">
@@ -15,32 +19,37 @@
       </div>
     </div>
 
-    <RocketModal 
-      v-if="selected" 
-      :rocket="selected" 
-      @close="closeModal" 
-    />
+    <RocketModal v-if="selected" :rocket="selected" @close="closeModal" />
   </div>
 </template>
 
 <script setup>
 import { ref, onMounted } from 'vue'
+import { useRouter } from 'vue-router'
 import api from '../services/api'
 import Loader from '../components/Loader.vue'
 import ErrorMessage from '../components/ErrorMessage.vue'
 import RocketCard from '../components/RocketCard.vue'
 import RocketModal from '../components/RocketModal.vue'
 
+const router = useRouter()
 const rockets = ref([])
 const loading = ref(false)
 const error = ref('')
 const selected = ref(null)
+const userEmail = ref(localStorage.getItem('userEmail') || '');
 
 function openModal(r) {
   selected.value = r
 }
 function closeModal() {
   selected.value = null
+}
+
+function logout() {
+  localStorage.removeItem('token');
+  delete api.defaults.headers.common['Authorization'];
+  router.push('/login');
 }
 
 onMounted(async () => {
@@ -61,24 +70,60 @@ onMounted(async () => {
   position: relative;
   min-height: 100vh;
   padding: 2rem;
-  background: linear-gradient(135deg,
-    #0f0c29 0%,
-    #302b63 50%,
-    #24243e 100%
-  );
+  background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
   display: flex;
   flex-direction: column;
   color: #fff;
 }
 
 .header {
-  text-align: center;
-  margin-bottom: 2rem;
+  position: relative;
+  padding: 0 2rem;
+  margin-bottom: 5rem;
 }
+
 .header h1 {
-  font-size: 2.5rem;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  margin: 0;
   color: #fff;
-  text-shadow: 0 0 8px rgba(0, 0, 0, 0.4);
+  font-size: 2.5rem;
+  text-shadow: 0 0 8px rgba(0,0,0,0.4);
+}
+
+.header-right {
+  position: absolute;
+  top: 50%;
+  right: 2rem;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.user-info {
+  background: rgba(255,255,255,0.1);
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  font-weight: 500;
+}
+
+.logout-btn {
+  background: #e74c3c;
+  color: #fff;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background 0.2s, transform 0.1s;
+}
+.logout-btn:hover {
+  background: #c0392b;
+}
+.logout-btn:active {
+  transform: scale(0.98);
 }
 
 .loader-wrapper,
@@ -115,6 +160,7 @@ onMounted(async () => {
   flex-direction: column;
   transition: transform 0.2s, box-shadow 0.2s;
 }
+
 .card:hover {
   transform: translateY(-4px);
   box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
@@ -124,6 +170,7 @@ onMounted(async () => {
   aspect-ratio: 16/9;
   overflow: hidden;
 }
+
 .image-wrapper img {
   width: 100%;
   height: 100%;
@@ -135,11 +182,13 @@ onMounted(async () => {
   flex: 1;
   color: #333;
 }
+
 .name {
   margin: 0 0 0.5rem;
   font-size: 1.25rem;
   color: #1abc9c;
 }
+
 .meta {
   font-size: 0.875rem;
   color: #666;
@@ -147,25 +196,25 @@ onMounted(async () => {
   display: flex;
   justify-content: space-between;
 }
+
 .description {
   flex: 1;
   font-size: 0.95rem;
   color: #444;
   margin-bottom: 1rem;
 }
+
 .status {
   text-align: center;
   padding: 0.5rem 0;
   border-radius: 6px;
   font-weight: 600;
   background: #1abc9c;
-  color: white;
+  color: #fff;
 }
+
 .status.inactive {
   background: #bdc3c7;
   color: #555;
 }
 </style>
-
-
-
