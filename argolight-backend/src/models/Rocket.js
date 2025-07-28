@@ -21,10 +21,28 @@ const rocketSchema = new mongoose.Schema({
   description: {
     type: String
   },
-    coverUrl: {
+  coverUrl: {
     type: String,
     required: true
   },
+  height: { 
+    type: Number 
+  },
+  diameter: { 
+    type: Number 
+  },
+  mass: { 
+    type: Number 
+  },
+  payloadCapacity: { 
+    type: Number 
+  },
+  stages: { 
+    type: Number 
+  },
+  wikipedia: { 
+    type: String 
+  }
 });
 
 module.exports = mongoose.model('Rocket', rocketSchema);
