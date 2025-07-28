@@ -65,6 +65,7 @@ async function onSubmit() {
   align-items: center;
   justify-content: center;
   background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+  padding: 2rem;
 }
 
 .login-card {
@@ -134,6 +135,42 @@ async function onSubmit() {
   color: #e74c3c;
   font-weight: 600;
 }
+
+@media (max-width: 768px) {
+  .login-card {
+    padding: 2rem;
+    max-width: 350px;
+  }
+  .login-card h1 {
+    font-size: 1.5rem;
+  }
+  .form-group input {
+    padding: 0.65rem 0.9rem;
+  }
+  .btn {
+    padding: 0.65rem;
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .login-card {
+    padding: 1.5rem 2rem;
+    max-width: 300px;
+  }
+  .login-card h1 {
+    font-size: 1.25rem;
+  }
+  .form-group input {
+    padding: 0.6rem 0.8rem;
+    font-size: 0.9rem;
+  }
+  .btn {
+    padding: 0.6rem;
+    font-size: 0.9rem;
+  }
+}
 </style>
+
 
 

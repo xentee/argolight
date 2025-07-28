@@ -2,7 +2,14 @@
   <div class="rockets-page">
     <header class="header">
       <h1>Nos Fusées</h1>
+      <button class="burger" @click="toggleMenu">
+        ☰
+      </button>
       <div class="header-right">
+        <span class="user-info">{{ userEmail }}</span>
+        <button class="logout-btn" @click="logout">Déconnexion</button>
+      </div>
+      <div v-if="showMenu" class="mobile-menu">
         <span class="user-info">{{ userEmail }}</span>
         <button class="logout-btn" @click="logout">Déconnexion</button>
       </div>
@@ -35,6 +42,7 @@ import RocketModal from '../components/RocketModal.vue'
 const router = useRouter()
 const rockets = ref([])
 const loading = ref(false)
+const showMenu = ref(false)
 const error = ref('')
 const selected = ref(null)
 const userEmail = ref(localStorage.getItem('userEmail') || '');
@@ -44,6 +52,10 @@ function openModal(r) {
 }
 function closeModal() {
   selected.value = null
+}
+
+function toggleMenu() {
+  showMenu.value = !showMenu.value
 }
 
 function logout() {
@@ -89,7 +101,7 @@ onMounted(async () => {
   margin: 0;
   color: #fff;
   font-size: 2.5rem;
-  text-shadow: 0 0 8px rgba(0,0,0,0.4);
+  text-shadow: 0 0 8px rgba(0, 0, 0, 0.4);
 }
 
 .header-right {
@@ -102,29 +114,53 @@ onMounted(async () => {
   gap: 0.5rem;
 }
 
+.burger {
+  display: none;
+  position: absolute;
+  top: 50%;
+  right: 2rem;
+  transform: translateY(-50%);
+  background: transparent;
+  border: none;
+  font-size: 1.5rem;
+  color: #fff;
+  cursor: pointer;
+}
+
+.mobile-menu {
+  position: absolute;
+  top: 4rem;
+  right: 2rem;
+  background: rgba(255,255,255,0.95);
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  display: flex;
+  flex-direction: column;
+  padding: 0.5rem;
+  z-index: 100;
+}
+
 .user-info {
   background: rgba(255,255,255,0.1);
-  padding: 0.5rem 1rem;
+  padding: 0.3rem 0.8rem;
   border-radius: 6px;
   font-weight: 500;
+  font-size: 0.9rem;
 }
 
 .logout-btn {
   background: #e74c3c;
   color: #fff;
   border: none;
-  padding: 0.5rem 1rem;
+  padding: 0.4rem 0.8rem;
   border-radius: 6px;
   cursor: pointer;
   font-weight: 600;
+  font-size: 0.9rem;
   transition: background 0.2s, transform 0.1s;
 }
-.logout-btn:hover {
-  background: #c0392b;
-}
-.logout-btn:active {
-  transform: scale(0.98);
-}
+.logout-btn:hover { background: #c0392b; }
+.logout-btn:active { transform: scale(0.98); }
 
 .loader-wrapper,
 .error-message {
@@ -152,25 +188,24 @@ onMounted(async () => {
 }
 
 .card {
-  background: rgba(255, 255, 255, 0.9);
+  background: rgba(255,255,255,0.9);
   border-radius: 12px;
   overflow: hidden;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.2);
   display: flex;
   flex-direction: column;
   transition: transform 0.2s, box-shadow 0.2s;
+  height: 360px;
 }
-
 .card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 12px 24px rgba(0,0,0,0.3);
 }
 
 .image-wrapper {
   aspect-ratio: 16/9;
   overflow: hidden;
 }
-
 .image-wrapper img {
   width: 100%;
   height: 100%;
@@ -182,13 +217,11 @@ onMounted(async () => {
   flex: 1;
   color: #333;
 }
-
 .name {
   margin: 0 0 0.5rem;
   font-size: 1.25rem;
   color: #1abc9c;
 }
-
 .meta {
   font-size: 0.875rem;
   color: #666;
@@ -196,14 +229,13 @@ onMounted(async () => {
   display: flex;
   justify-content: space-between;
 }
-
 .description {
   flex: 1;
   font-size: 0.95rem;
   color: #444;
   margin-bottom: 1rem;
+  overflow: hidden;
 }
-
 .status {
   text-align: center;
   padding: 0.5rem 0;
@@ -212,9 +244,42 @@ onMounted(async () => {
   background: #1abc9c;
   color: #fff;
 }
-
 .status.inactive {
   background: #bdc3c7;
   color: #555;
+}
+
+@media (max-width: 768px) {
+  .header { padding: 0 1rem; margin-bottom: 2rem; }
+  .header h1 { font-size: 2rem; }
+  .header-right { right: 1rem; }
+  .burger { right: 1rem; }
+  .grid {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1rem;
+  }
+  .card { height: auto; }
+  .description {
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+}
+
+@media (max-width: 480px) {
+  .header-right { display: none; }
+  .burger { display: block; }
+  .header h1 { font-size: 1.5rem; }
+  .user-info, .logout-btn { padding: 0.3rem 0.6rem; font-size: 0.8rem; }
+  .mobile-menu {
+    top: 3.5rem;
+    right: 1rem;
+  }
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  .card { height: auto; }
 }
 </style>
