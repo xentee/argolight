@@ -1,0 +1,24 @@
+{
+  "name": "argolight-frontend",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "concurrently \"npm run dev:vue\" \"npm run dev:electron\"",
+    "dev:vue": "vite",
+    "dev:electron": "electron .",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "concurrently": "^9.2.0",
+    "cross-env": "^10.0.0",
+    "vue": "^3.5.17",
+    "vue-router": "^4.5.1"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^6.0.0",
+    "electron": "^37.2.4",
+    "vite": "^7.0.4"
+  }
+}
