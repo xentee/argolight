@@ -1,7 +1,7 @@
 <template>
   <div class="rockets-page">
     <header class="header">
-      <h1>🚀 Nos Fusées</h1>
+      <h1>Nos Fusées</h1>
     </header>
 
     <div v-if="loading" class="loader-wrapper">
@@ -10,12 +10,16 @@
     <ErrorMessage v-if="error" :message="error" />
 
     <div v-else class="grid">
-      <RocketCard
-        v-for="r in rockets"
-        :key="r._id"
-        :rocket="r"
-      />
+      <div v-for="r in rockets" :key="r._id" @click="openModal(r)">
+        <RocketCard :rocket="r" />
+      </div>
     </div>
+
+    <RocketModal 
+      v-if="selected" 
+      :rocket="selected" 
+      @close="closeModal" 
+    />
   </div>
 </template>
 
@@ -25,10 +29,19 @@ import api from '../services/api'
 import Loader from '../components/Loader.vue'
 import ErrorMessage from '../components/ErrorMessage.vue'
 import RocketCard from '../components/RocketCard.vue'
+import RocketModal from '../components/RocketModal.vue'
 
 const rockets = ref([])
 const loading = ref(false)
 const error = ref('')
+const selected = ref(null)
+
+function openModal(r) {
+  selected.value = r
+}
+function closeModal() {
+  selected.value = null
+}
 
 onMounted(async () => {
   loading.value = true
@@ -87,6 +100,10 @@ onMounted(async () => {
   grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
   gap: 1.5rem;
   z-index: 1;
+}
+
+.grid > div {
+  cursor: pointer;
 }
 
 .card {

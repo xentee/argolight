@@ -39,14 +39,14 @@ const formattedDate = computed(() =>
   background: white;
   border-radius: 12px;
   overflow: hidden;
-  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
   transition: transform 0.2s, box-shadow 0.2s;
+  height: 360px;
 }
 .card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
 }
-
 .image-wrapper {
   width: 100%;
   aspect-ratio: 16/9;
@@ -56,47 +56,42 @@ const formattedDate = computed(() =>
   width: 100%;
   height: 100%;
   object-fit: cover;
-  display: block;
 }
-
 .content {
-  padding: 1rem;
+  flex: 1;
   display: flex;
   flex-direction: column;
-  flex: 1;
+  padding: 1rem;
+  box-sizing: border-box;
 }
-
 .name {
-  margin: 0;
+  margin: 0 0 0.5rem;
   font-size: 1.25rem;
-  color: #1f2c88;
+  color: #1abc9c;
+  flex-shrink: 0;
 }
-
 .meta {
-  margin: 0.5rem 0;
   font-size: 0.875rem;
   color: #666;
+  margin-bottom: 0.75rem;
   display: flex;
   justify-content: space-between;
+  flex-shrink: 0;
 }
-
 .description {
   flex: 1;
   font-size: 0.95rem;
   color: #444;
   margin-bottom: 1rem;
+  overflow: hidden;
 }
-
 .status {
   text-align: center;
-  padding: 0.5rem;
+  padding: 0.5rem 0;
   border-radius: 6px;
   font-weight: 600;
-  background: #e0e0e0;
-  color: #555;
-}
-.status.active {
   background: #1abc9c;
   color: white;
+  flex-shrink: 0;
 }
 </style>
