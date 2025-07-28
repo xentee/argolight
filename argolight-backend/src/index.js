@@ -1,5 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const cors = require('cors');
 const { PORT, MONGO_URI, JWT_SECRET } = require('./config');
 const auth = require('./middlewares/auth');
 const rocketRoutes = require('./routes/rocket');
@@ -7,9 +8,15 @@ const userRoutes = require('./routes/user');
 
 const app = express();
 
+app.use(cors({
+  origin: 'http://localhost:5173'
+}));
+
 app.use(express.json());
 app.use('/rocket', auth, rocketRoutes);
 app.use('/user', userRoutes);
+
+
 
 mongoose
   .connect(MONGO_URI, {
