@@ -48,6 +48,7 @@ async function onSubmit() {
       password: password.value
     });
     setToken(data.token);
+    localStorage.setItem('token', data.token);
     router.push('/rockets');
   } catch (e) {
     error.value = e.response?.data?.error || 'Erreur lors de la connexion';
