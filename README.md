@@ -1,5 +1,8 @@
 # Argolight – Test Technique
 
+Petite application desktop développée dans le cadre d’un test technique :
+Elle expose une API Node/Express + MongoDB (avec authentification JWT) pour gérer une liste de fusées SpaceX, et un client Vue/Electron pour naviguer et consulter ces données de manière simple et visuelle.
+
 ## 📁 Structure du projet
 
 ```
